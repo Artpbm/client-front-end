@@ -5,6 +5,7 @@ import { Api } from './api/api'
 
 function UserList() {
   const[users, setUsers] = useState([])
+  const[list, setList] = useState([])
   const[loading, setLoading] = useState(true)
   const[error, setError] = useState('')
 
@@ -23,12 +24,30 @@ function UserList() {
 
     fetchUsers()
   }, [])
+
+  useEffect(() => {
+    async function fetchList(){
+      try{
+        const response = await Api.get('/lists')
+        setList(response.data)
+        // console.log(response.data)
+      }catch(err){
+        setError('Erro ao carregar lista', err)
+      }finally{
+        setLoading(false)
+      }
+    }
+
+    fetchList()
+  }, [])
+
   if (loading) return <p>carregando usuarios.....</p>
   if (error) return <p>{error}</p>
 
   return (
+    <>
     <div style={{padding: '2rem'}}> 
-       <h1>Lista de Usuários</h1>
+       <h1>Usuários</h1>
         <ul>
           {users.map((item) => (
             <li key={item.id}>
@@ -37,6 +56,23 @@ function UserList() {
           ))}
         </ul>
     </div>
+     <div style={{padding: '2rem'}}> 
+     <h1>Lista</h1>
+      <ul>
+        {list.map((item) => (
+          <li key={item.id}>
+            <strong>{item.description}</strong>
+            <br /> 
+            <i>Preço: R${item.price}</i>
+            <br />
+            <i>Quantidade: {item.quantity}</i>
+            <br />
+            <img src={item.image} alt="item" style={{width: 200, height: 'auto'}}/>
+          </li>
+        ))}
+      </ul>
+  </div>
+  </>
   )
 }
 

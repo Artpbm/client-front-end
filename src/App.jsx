@@ -1,7 +1,8 @@
 import { useEffect, useState }  from 'react'
 import { useNavigate } from 'react-router'
-import './App.module.css'
+import style from './App.module.css'
 import { Api } from './api/api'
+
 
 function App() {
 
@@ -36,14 +37,22 @@ function App() {
  }
 
   return (
-    <div style={{padding: '2rem'}}>
-      <form onSubmit={handleLogin}>
-        <h4>Login</h4>
-        <input type="email" placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} required/>
-        <input type="password" placeholder='senha' value={password} onChange={(e) => setPassoword(e.target.value)} required/>
-      <button type='submit'>Entrar</button>
-      <p>{message}</p>
-      </form>
+    <div className={style.wrapLogin}>
+   
+    <div className={style.wrapImg}>
+    <div className={style.degrade}>
+
+    </div>
+    </div>
+      <div className={style.wrapForm}>
+        <form onSubmit={handleLogin}>
+          <h2>Login</h2>
+          <input type="email" placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} required/>
+          <input type="password" placeholder='senha' value={password} onChange={(e) => setPassoword(e.target.value)} required/>
+        <button type='submit'>Entrar</button>
+        <p>{message}</p>
+        </form>
+      </div>
     </div>
   )
 }
