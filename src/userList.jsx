@@ -2,7 +2,7 @@ import './Userlist.module.css'
 
 import { useEffect, useState } from 'react'
 import { Api } from './api/api'
-
+import { Menu } from './components/menu'
 function UserList() {
   const[users, setUsers] = useState([])
   const[list, setList] = useState([])
@@ -45,8 +45,9 @@ function UserList() {
   if (error) return <p>{error}</p>
 
   return (
-    <>
-    <div style={{padding: '2rem'}}> 
+    <section>
+      <Menu/>
+    <div style={{padding: '2rem', color: 'white'}}> 
        <h1>Usuários</h1>
         <ul>
           {users.map((item) => (
@@ -56,7 +57,7 @@ function UserList() {
           ))}
         </ul>
     </div>
-     <div style={{padding: '2rem'}}> 
+     <div style={{padding: '2rem', color: 'white'}}> 
      <h1>Lista</h1>
       <ul>
         {list.map((item) => (
@@ -72,7 +73,7 @@ function UserList() {
         ))}
       </ul>
   </div>
-  </>
+  </section>
   )
 }
 
