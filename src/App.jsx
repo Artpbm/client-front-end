@@ -47,8 +47,8 @@ function App() {
       <div className={style.wrapForm}>
         <form onSubmit={handleLogin}>
           <h2>Login</h2>
-          <input type="email" placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} required/>
-          <input type="password" placeholder='senha' value={password} onChange={(e) => setPassoword(e.target.value)} required/>
+          <input className={style.wrapI} type="email" placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} required/>
+          <input className={style.wrapI} type="password" placeholder='senha' value={password} onChange={(e) => setPassoword(e.target.value)} required/>
         <button type='submit'>Entrar</button>
         <p>{message}</p>
         </form>
